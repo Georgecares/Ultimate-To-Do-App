@@ -1,5 +1,11 @@
 const CACHE_NAME = "todo-cache-v1";
-const urlsToCache = ["./", "./index.html", "./style.css", "./script.js"];
+const urlsToCache = [
+  "./",
+  "./index.html",
+  "./style.css",
+  "./script.js",
+  "./quotes.json",
+];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(
