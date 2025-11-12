@@ -1,0 +1,289 @@
+/* --- Reset & Global Styles --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+
+  display: flex;
+  justify-content: center; /* horizontal center */
+  padding-top: 30px;
+  margin: 0;
+}
+
+/* --- App Container --- */
+.app-container {
+  background: #fff;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 400px;
+  padding: 25px 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Header & Quote --- */
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+h1 {
+  font-size: 1.6em;
+  margin-bottom: 5px;
+}
+
+#greeting {
+  color: #134e5e;
+}
+#motivationalQuote {
+  color: #555;
+  font-size: 0.95em;
+  margin-bottom: 15px;
+}
+
+/* --- Progress Bar --- */
+.progress-wrapper {
+  background: #eee;
+  border-radius: 10px;
+  height: 12px;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #4caf50, #81c784);
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
+#progressText,
+#points {
+  font-size: 0.85em;
+  color: #555;
+  margin-top: 5px;
+  text-align: center;
+}
+
+/* --- Badges --- */
+#badges {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+@keyframes badge-pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#badges span.badge {
+  display: inline-block;
+  font-size: 1.3em;
+  transform-origin: center;
+  animation-fill-mode: forwards;
+}
+
+/* --- Task List --- */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+li {
+  background: #f9f9f9;
+  padding: 12px 10px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: grab;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+li.completed {
+  text-decoration: line-through;
+  color: #aaa;
+  background: #e7ffe7;
+}
+li:active {
+  transform: scale(0.98);
+}
+
+/* ===== Delete Confirmation Modal ===== */
+.delete-modal {
+  border-top: 5px solid #ff4d4d;
+  animation: pop-in 0.25s ease-out;
+}
+
+.warning-icon {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  animation: pulse 1s infinite alternate;
+}
+
+/* Modal animation */
+@keyframes pop-in {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Warning pulse */
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+#confirmDelete {
+  background: #ff4d4d;
+  color: white;
+  font-weight: bold;
+  transition: background 0.2s ease;
+}
+
+#confirmDelete:hover {
+  background: #d93636;
+}
+
+#cancelDelete {
+  background: #bbb;
+  color: white;
+  transition: background 0.2s ease;
+}
+
+#cancelDelete:hover {
+  background: #999;
+}
+
+/* --- Add Task Button --- */
+#addTaskBtn {
+  display: block;
+  margin: 20px auto 0 auto;
+  background: #4caf50;
+  color: white;
+  font-size: 2em;
+  border: none;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, background 0.2s;
+}
+#addTaskBtn:hover {
+  transform: scale(1.1);
+  background: #43a047;
+}
+
+/* --- Modal --- */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+.hidden {
+  display: none;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px 20px;
+  width: 90%;
+  max-width: 320px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+}
+.modal-content input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1em;
+}
+.modal-actions {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.modal-actions button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: transform 0.2s, background 0.2s;
+}
+#saveTask {
+  background: #4caf50;
+  color: white;
+}
+#saveTask:hover {
+  background: #43a047;
+  transform: scale(1.05);
+}
+#cancelTask {
+  background: #ccc;
+}
+#cancelTask:hover {
+  background: #b3b3b3;
+  transform: scale(1.05);
+}
+
+#motivationalQuote {
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  min-height: 60px; /* adjust based on your longest quote */
+}
+#motivationalQuote.show {
+  opacity: 1;
+}
+/* --- Responsive --- */
+@media (max-width: 420px) {
+  .app-container {
+    padding: 20px 15px;
+  }
+  li {
+    padding: 10px 8px;
+  }
+  #addTaskBtn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.8em;
+  }
+  .modal-content {
+    padding: 20px 15px;
+  }
+}
