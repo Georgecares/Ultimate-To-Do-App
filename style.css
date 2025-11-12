@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: "Montserrat", sans-serif;
   background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
@@ -246,6 +247,47 @@ li:active {
   font-weight: 500;
   transition: transform 0.2s, background 0.2s;
 }
+
+#editModal .modal-content {
+  border-top: 4px solid #4caf50;
+}
+
+#editModal h2 {
+  color: #333;
+}
+
+.task-actions {
+  display: flex;
+  gap: 5px;
+}
+
+#updateTask {
+  background: #4caf50;
+  color: white;
+}
+
+#updateTask:hover {
+  background: #45a049;
+}
+
+.edit-btn,
+.delete-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.edit-btn:hover {
+  transform: scale(1.2);
+  color: #4caf50;
+}
+.delete-btn:hover {
+  transform: scale(1.2);
+  color: #ff4444;
+}
+
 #saveTask {
   background: #4caf50;
   color: white;

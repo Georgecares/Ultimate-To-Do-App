@@ -73,7 +73,19 @@ function renderTasks() {
     const li = document.createElement("li");
     li.className = task.completed ? "completed" : "";
     li.setAttribute("draggable", "true");
-    li.innerHTML = `<span>${task.text}</span><button class="delete-btn">🗑️</button>`;
+    li.innerHTML = `
+  <span>${task.text}</span>
+  <div class="task-actions">
+    <button class="edit-btn">✏️</button>
+    <button class="delete-btn">🗑️</button>
+  </div>
+`;
+
+    // Edit
+    li.querySelector(".edit-btn").addEventListener("click", (e) => {
+      e.stopPropagation(); // prevent toggle
+      editTask(index);
+    });
 
     // Toggle complete
     li.addEventListener("click", (e) => {
@@ -155,6 +167,35 @@ function deleteTask(index) {
   recalcStreak();
   renderTasks();
 }
+
+// --- Edit Task Modal ---
+const editModal = document.getElementById("editModal");
+const editTaskInput = document.getElementById("editTaskInput");
+const updateTaskBtn = document.getElementById("updateTask");
+const cancelEditBtn = document.getElementById("cancelEdit");
+let editIndex = null;
+
+function editTask(index) {
+  editIndex = index;
+  editTaskInput.value = tasks[index].text;
+  editModal.classList.remove("hidden");
+}
+
+updateTaskBtn.addEventListener("click", () => {
+  const updatedText = editTaskInput.value.trim();
+  if (updatedText && editIndex !== null) {
+    tasks[editIndex].text = updatedText;
+    saveLocal();
+    renderTasks();
+    editModal.classList.add("hidden");
+    editIndex = null;
+  }
+});
+
+cancelEditBtn.addEventListener("click", () => {
+  editModal.classList.add("hidden");
+  editIndex = null;
+});
 
 // --- Recalculate Points & Streak ---
 function recalcPoints() {
